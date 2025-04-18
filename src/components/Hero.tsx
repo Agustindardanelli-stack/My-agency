@@ -1,16 +1,23 @@
-'use client'
-import Image from 'next/image';
+"use client"
+import Link from 'next/link';
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <section className="bg-cover   bg-[#a26e63] bg-center  h-screen flex items-center justify-center" style={{ backgroundImage: 'url(/hero-image.jpg)' }}>
-      <div className="text-center   text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Impulsa tu negocio</h1>
-        <p className="text-lg md:text-2xl mb-6">Con nuestra agencia de marketing digital</p>
-        <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">Contáctanos</a>
+    <section id="inicio" className="pt-24 md:pt-0 flex items-center justify-center bg-gradient-to-r from-blue-900 to-blue-800 h-screen bg-opacity-90 bg-blend-overlay" style={{backgroundImage: "url('/images/hero-bg.jpg')"}}>
+      <div className="container mx-auto px-4 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">Impulsa tu negocio</h1>
+          <p className="text-xl md:text-2xl text-white mb-10 opacity-90 animate-fade-in-delay">Con nuestra agencia de marketing digital especializada en resultados</p>
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-delay-2">
+            <Link href="#contacto" className="bg-orange-500 hover:bg-blue-900 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg inline-block">
+              Contáctanos
+            </Link>
+            <Link href="#servicios" className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg inline-block">
+              Nuestros servicios
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
