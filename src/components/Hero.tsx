@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section id="inicio" className="pt-24 md:pt-0 flex items-center justify-center bg-gradient-to-r from-blue-900 to-blue-800 h-screen bg-opacity-90 bg-blend-overlay" style={{backgroundImage: "url('/images/hero-bg.jpg')"}}>
+    <section id="inicio" className="pt-24 md:pt-0 flex items-center justify-center bg-gradient-to-r from-blue-900 to-blue-800 h-screen bg-opacity-90 bg-blend-overlay" style={{backgroundImage: "url('image/hero-bg.jpg')"}}>
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">Impulsa tu negocio</h1>
