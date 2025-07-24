@@ -1,136 +1,102 @@
-"use client"
-import { useState } from 'react';
+'use client';
+import React from 'react';
+import { User, Mail, Phone, MessageSquare, ArrowRight } from 'lucide-react';
 
 export default function Contacto() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = React.useState({
     nombre: '',
     email: '',
-    asunto: '',
-    mensaje: ''
+    telefono: '',
+    mensaje: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  interface FormData {
+    nombre: string;
+    email: string;
+    telefono: string;
+    mensaje: string;
+  }
+
+  interface InputChangeEvent extends React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> {}
+
+  const handleChange = (e: InputChangeEvent) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData((prev: FormData) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar el formulario
-    console.log('Formulario enviado:', formData);
-    // Resetear el formulario después de enviar
-    setFormData({
-      nombre: '',
-      email: '',
-      asunto: '',
-      mensaje: ''
-    });
-    // Mostrar mensaje de éxito
-    alert('Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.');
+    alert('Mensaje enviado. ¡Gracias!');
+    setFormData({ nombre: '', email: '', telefono: '', mensaje: '' });
   };
 
   return (
-    <section id="contacto" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Contacto</h2>
-          <div className="w-20 h-1 bg-orange-500 mx-auto mb-4"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">¿Listo para impulsar tu negocio? Hablemos hoy mismo</p>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Información de contacto */}
-          <div className="space-y-8">
-            <div className="flex items-start">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white mr-4 mt-1">
-                <i className="fas fa-map-marker-alt"></i>
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-blue-900 mb-1">Ubicación</h4>
-                <p className="text-gray-600">Calle Principal 123, Ciudad</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white mr-4 mt-1">
-                <i className="fas fa-envelope"></i>
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-blue-900 mb-1">Email</h4>
-                <p className="text-gray-600">info@miagencia.com</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white mr-4 mt-1">
-                <i className="fas fa-phone"></i>
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-blue-900 mb-1">Teléfono</h4>
-                <p className="text-gray-600">+34 612 345 678</p>
-              </div>
-            </div>
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-gray-100">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10">
+        {/* Decorativos */}
+        <span className="absolute top-6 left-8 text-yellow-300 text-2xl">+</span>
+        <span className="absolute top-10 right-10 text-blue-400 text-2xl">+</span>
+        <span className="absolute bottom-8 left-10 text-yellow-300 text-xl">+</span>
+        <span className="absolute bottom-10 right-8 text-blue-400 text-xl">+</span>
+        <span className="absolute top-4 right-1 text-gray-400 text-xl">×</span>
+        <span className="absolute bottom-4 left-2 text-gray-400 text-xl">×</span>
+        {/* Título */}
+        <h2 className="text-3xl font-bold text-center text-custom-teal mb-8">Contact Us</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left">
+          <div className="relative">
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input
+              name="nombre"
+              placeholder="Username"
+              value={formData.nombre}
+              onChange={handleChange}
+              required
+              className="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-custom-teal text-gray-700"
+            />
           </div>
-          
-          {/* Formulario de contacto */}
-          <div className="bg-gray-50 p-8 rounded-lg shadow-md">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <input 
-                  type="text" 
-                  name="nombre"
-                  value={formData.nombre}
-                  onChange={handleChange}
-                  placeholder="Nombre" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                  required 
-                />
-              </div>
-              <div>
-                <input 
-                  type="email" 
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                  required 
-                />
-              </div>
-              <div>
-                <input 
-                  type="text" 
-                  name="asunto"
-                  value={formData.asunto}
-                  onChange={handleChange}
-                  placeholder="Asunto" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                />
-              </div>
-              <div>
-                <textarea 
-                  name="mensaje"
-                  value={formData.mensaje}
-                  onChange={handleChange}
-                  placeholder="Mensaje" 
-                  rows={5} 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" 
-                  required
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                className="w-full bg-orange-500 hover:bg-blue-900 text-white py-3 rounded-md font-medium transition-all duration-300 transform hover:-translate-y-1"
-              >
-                Enviar mensaje
-              </button>
-            </form>
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-custom-teal text-gray-700"
+            />
           </div>
-        </div>
+          <div className="relative">
+            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input
+              name="telefono"
+              type="tel"
+              placeholder="Phone"
+              value={formData.telefono}
+              onChange={handleChange}
+              className="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-custom-teal text-gray-700"
+            />
+          </div>
+          <div className="relative">
+            <MessageSquare className="absolute left-4 top-4 text-gray-400" />
+            <textarea
+              name="mensaje"
+              placeholder="Message"
+              rows={4}
+              value={formData.mensaje}
+              onChange={handleChange}
+              required
+              className="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-custom-teal resize-none text-gray-700"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center bg-custom-teal text-white rounded-full py-3 font-bold text-lg tracking-wide hover:bg-custom-green transition-all duration-300 mt-2"
+          >
+            SEND <ArrowRight className="ml-2 w-5 h-5" />
+          </button>
+        </form>
       </div>
-    </section>
+    </div>
   );
 }
