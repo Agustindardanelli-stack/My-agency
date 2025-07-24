@@ -19,33 +19,33 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-      <div className="h-48 bg-gradient-to-br from-green-100 to-teal-100 flex items-center justify-center">
-        <div className="text-6xl text-green-600 opacity-20">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-custom-blue">
+      <div className="h-48 bg-gradient-to-br from-custom-lime to-custom-blue flex items-center justify-center">
+        <div className="text-6xl text-custom-green opacity-20">
           {project.title.charAt(0)}
         </div>
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
-          <span className="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold">
+          <span className="px-3 py-1 bg-custom-lime text-custom-green rounded-full text-sm font-semibold">
             {project.category}
           </span>
           <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
             project.status === 'Production' 
-              ? 'bg-green-100 text-green-600'
+              ? 'bg-custom-lime text-custom-green'
               : project.status === 'Beta'
               ? 'bg-yellow-100 text-yellow-600'
-              : 'bg-blue-100 text-blue-600'
+              : 'bg-custom-blue text-white'
           }`}>
             {project.status}
           </span>
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
-        <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+        <h3 className="text-xl font-bold text-custom-teal mb-3">{project.title}</h3>
+        <p className="text-custom-green mb-4 leading-relaxed">{project.description}</p>
         
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tech.map((tech, i) => (
-            <span key={i} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+            <span key={i} className="px-3 py-1 bg-custom-blue text-white rounded-full text-sm">
               {tech}
             </span>
           ))}
@@ -56,7 +56,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-gray-600 hover:text-green-600 transition-colors"
+            className="flex items-center text-custom-teal hover:text-custom-green transition-colors"
           >
             <Github className="w-5 h-5 mr-2" />
             Código
@@ -65,7 +65,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-gray-600 hover:text-green-600 transition-colors"
+            className="flex items-center text-custom-teal hover:text-custom-green transition-colors"
           >
             <ExternalLink className="w-5 h-5 mr-2" />
             Demo
