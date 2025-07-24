@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, Code, Zap, Users, ArrowRight, Menu, X } from 'lucide-react';
+import { Github, ExternalLink, Code, Zap, Users, Menu, X } from 'lucide-react';
 import Contacto from './Contact';
 
 const CodeNovaLanding: React.FC = () => {
