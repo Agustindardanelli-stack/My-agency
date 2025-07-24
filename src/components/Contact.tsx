@@ -10,18 +10,11 @@ export default function Contacto() {
     mensaje: '',
   });
 
-  interface FormData {
-    nombre: string;
-    email: string;
-    telefono: string;
-    mensaje: string;
-  }
-
-  interface InputChangeEvent extends React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> {}
-
-  const handleChange = (e: InputChangeEvent) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData((prev: FormData) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +34,9 @@ export default function Contacto() {
         <span className="absolute top-4 right-1 text-gray-400 text-xl">×</span>
         <span className="absolute bottom-4 left-2 text-gray-400 text-xl">×</span>
         {/* Título */}
-        <h2 className="text-3xl font-bold text-center text-custom-teal mb-8">Contact Us</h2>
+        <h2 className="text-3xl font-bold text-center text-custom-teal mb-8">
+          Contact Us
+        </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left">
           <div className="relative">
             <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
