@@ -12,10 +12,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'custom-green': '#233605',
-        'custom-lime': '#ddd863',
-        'custom-teal': '#1d4f56',
-        'custom-blue': '#55bdca',
+        
+        'custom-green': '#ececec',   
+        'custom-lime': '#bded0b',   
+        'custom-teal': '#2F52E0',    
+        'custom-blue': '#03045E',    
       },
     },
   },
