@@ -506,7 +506,7 @@ const CodeNovaLanding: React.FC = () => {
               <div
                 key={index}
                 className={`group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-custom-green/30 hover:border-custom-teal/30 transform hover:-translate-y-2 ${
-                  isVisible.servicios ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  isVisible.service ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
