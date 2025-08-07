@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CodeNova - Marketing Digital',
+  title: 'CodeNova - Desarrollo Web y Marketing Digital',
   description: 'Agencia especializada en desarrollo web y marketing digital',
 };
 

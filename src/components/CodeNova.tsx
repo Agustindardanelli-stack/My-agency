@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, ExternalLink, Code, Zap, Users, Menu, X, Star, ArrowRight, Mail, Phone, MapPin, Award, Rocket, Shield, Clock, CheckCircle, ArrowDown, Play } from 'lucide-react';
 
-const CodeNovaLanding: React.FC = () => {
+const CodeNovaLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState({});
@@ -176,15 +176,15 @@ const CodeNovaLanding: React.FC = () => {
       <header
         className={`fixed w-full z-50 transition-all duration-500 ${
           scrollY > 50 
-            ? 'bg-white/95 backdrop-blur-md shadow-xl border-b border-custom-green/20' 
+            ? 'bg-custom-green/95 backdrop-blur-md shadow-xl border-b border-custom-lime/20' 
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-custom-teal to-custom-blue rounded-xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform">
-                <span className="text-white font-bold text-lg">CN</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-custom-lime to-custom-teal rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-custom-blue font-bold text-lg">CN</span>
               </div>
               <span className="text-2xl font-bold text-custom-blue">
                 Code<span className="text-custom-teal">Nova</span>
@@ -207,7 +207,7 @@ const CodeNovaLanding: React.FC = () => {
             
             {/* Mobile menu button */}
             <button 
-              className="md:hidden p-2 rounded-lg hover:bg-custom-green/20 transition-colors" 
+              className="md:hidden p-2 rounded-lg hover:bg-custom-lime/20 transition-colors" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? 
@@ -220,13 +220,13 @@ const CodeNovaLanding: React.FC = () => {
         
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-custom-green/20 shadow-lg">
+          <div className="md:hidden bg-custom-green/95 backdrop-blur-md border-t border-custom-lime/20 shadow-lg">
             <div className="px-4 py-4 space-y-2">
               {['Inicio', 'Proyectos', 'Servicios', 'Proceso', 'Contacto'].map((item) => (
                 <a 
                   key={item}
                   href={`#${item.toLowerCase().replace('ó', 'o')}`} 
-                  className="block py-3 px-4 text-custom-blue hover:text-custom-teal hover:bg-custom-green/10 rounded-lg transition-all duration-300 font-medium"
+                  className="block py-3 px-4 text-custom-blue hover:text-custom-teal hover:bg-custom-lime/10 rounded-lg transition-all duration-300 font-medium"
                 >
                   {item}
                 </a>
@@ -245,12 +245,12 @@ const CodeNovaLanding: React.FC = () => {
         {/* Background decorations */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-custom-lime/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-custom-green/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-custom-lime/10 rounded-full blur-2xl animate-bounce"></div>
         </div>
         
         <div className="max-w-7xl mx-auto text-center relative z-10 w-full">
-          <div className={`bg-white/95 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-white/30 transform transition-all duration-1000 ${
+          <div className={`bg-custom-green/95 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-custom-lime/30 transform transition-all duration-1000 ${
             isVisible.inicio ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <div className="inline-flex items-center bg-custom-lime/20 text-custom-blue px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-bounce">
@@ -287,7 +287,7 @@ const CodeNovaLanding: React.FC = () => {
             </div>
             
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-custom-green/30">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-custom-lime/30">
               <div className="text-center group">
                 <div className="text-2xl md:text-3xl font-bold text-custom-teal group-hover:scale-110 transition-transform">50+</div>
                 <div className="text-custom-blue/70 text-sm md:text-base">Proyectos</div>
@@ -310,7 +310,7 @@ const CodeNovaLanding: React.FC = () => {
         
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ArrowDown className="w-6 h-6 text-white/70" />
+          <ArrowDown className="w-6 h-6 text-custom-green/70" />
         </div>
       </section>
 
@@ -321,17 +321,17 @@ const CodeNovaLanding: React.FC = () => {
           <div className={`text-center mb-16 transform transition-all duration-1000 ${
             isVisible.proyectos ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-custom-green mb-4">
               Proyectos <span className="text-custom-lime">Destacados</span>
             </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl text-custom-green/90 max-w-2xl mx-auto">
               Descubre algunos de nuestros trabajos más representativos y las tecnologías que utilizamos
             </p>
           </div>
           
           {/* Featured Project Carousel */}
           <div className="mb-16">
-            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 overflow-hidden">
+            <div className="bg-custom-green/10 backdrop-blur-sm rounded-3xl p-8 overflow-hidden border border-custom-lime/20">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
@@ -347,12 +347,12 @@ const CodeNovaLanding: React.FC = () => {
                     </span>
                   </div>
                   
-                  <h3 className="text-3xl font-bold text-white">{projects[activeProject].title}</h3>
-                  <p className="text-white/90 text-lg leading-relaxed">{projects[activeProject].description}</p>
+                  <h3 className="text-3xl font-bold text-custom-green">{projects[activeProject].title}</h3>
+                  <p className="text-custom-green/90 text-lg leading-relaxed">{projects[activeProject].description}</p>
                   
                   <div className="flex flex-wrap gap-2">
                     {projects[activeProject].tech.map((tech, index) => (
-                      <span key={index} className="px-3 py-1 bg-white/20 text-white text-sm rounded-lg font-medium">
+                      <span key={index} className="px-3 py-1 bg-custom-green/20 text-custom-green text-sm rounded-lg font-medium">
                         {tech}
                       </span>
                     ))}
@@ -360,7 +360,7 @@ const CodeNovaLanding: React.FC = () => {
                   
                   <div className="space-y-2">
                     {projects[activeProject].results.map((result, index) => (
-                      <div key={index} className="flex items-center text-white/90">
+                      <div key={index} className="flex items-center text-custom-green/90">
                         <CheckCircle className="w-5 h-5 mr-3 text-custom-lime" />
                         {result}
                       </div>
@@ -370,7 +370,7 @@ const CodeNovaLanding: React.FC = () => {
                   <div className="flex space-x-4">
                     <a
                       href={projects[activeProject].github}
-                      className="flex items-center text-custom-lime hover:text-white transition-colors font-medium bg-white/10 px-4 py-2 rounded-lg"
+                      className="flex items-center text-custom-lime hover:text-custom-green transition-colors font-medium bg-custom-green/10 px-4 py-2 rounded-lg border border-custom-lime/30"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -379,7 +379,7 @@ const CodeNovaLanding: React.FC = () => {
                     </a>
                     <a
                       href={projects[activeProject].demo}
-                      className="flex items-center text-custom-lime hover:text-white transition-colors font-medium bg-white/10 px-4 py-2 rounded-lg"
+                      className="flex items-center text-custom-lime hover:text-custom-green transition-colors font-medium bg-custom-green/10 px-4 py-2 rounded-lg border border-custom-lime/30"
                     >
                       <ExternalLink className="w-5 h-5 mr-2" />
                       Demo
@@ -391,7 +391,7 @@ const CodeNovaLanding: React.FC = () => {
                   <img 
                     src={projects[activeProject].image} 
                     alt={projects[activeProject].title}
-                    className="w-full rounded-2xl shadow-2xl"
+                    className="w-full rounded-2xl shadow-2xl border border-custom-lime/30"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
                 </div>
@@ -404,7 +404,7 @@ const CodeNovaLanding: React.FC = () => {
                     key={index}
                     onClick={() => setActiveProject(index)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === activeProject ? 'bg-custom-lime' : 'bg-white/30'
+                      index === activeProject ? 'bg-custom-lime' : 'bg-custom-green/30'
                     }`}
                   />
                 ))}
@@ -417,7 +417,7 @@ const CodeNovaLanding: React.FC = () => {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className={`group bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 ${
+                className={`group bg-custom-green/10 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-custom-lime/20 ${
                   isVisible.proyectos ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
@@ -431,7 +431,7 @@ const CodeNovaLanding: React.FC = () => {
                   <div className="absolute inset-0 bg-black/20"></div>
                   <div className="relative z-10 p-6 h-full flex flex-col justify-between">
                     <div className="flex justify-between items-start">
-                      <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">
+                      <span className="px-3 py-1 bg-custom-green/20 text-custom-green rounded-full text-sm font-medium">
                         {project.category}
                       </span>
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
@@ -442,19 +442,19 @@ const CodeNovaLanding: React.FC = () => {
                         {project.status}
                       </span>
                     </div>
-                    <div className="text-white text-right">
+                    <div className="text-custom-green text-right">
                       <div className="text-4xl opacity-30 font-bold">0{project.id}</div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="p-6 bg-white">
+                <div className="p-6 bg-custom-green">
                   <h3 className="text-xl font-bold text-custom-blue mb-3">{project.title}</h3>
                   <p className="text-custom-blue/80 mb-4 leading-relaxed text-sm">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((tech, techIndex) => (
-                      <span key={techIndex} className="px-3 py-1 bg-custom-green text-custom-blue text-sm rounded-lg font-medium">
+                      <span key={techIndex} className="px-3 py-1 bg-custom-lime/20 text-custom-blue text-sm rounded-lg font-medium">
                         {tech}
                       </span>
                     ))}
@@ -488,7 +488,7 @@ const CodeNovaLanding: React.FC = () => {
       </section>
 
       {/* Services */}
-      <section id="servicios" className="py-20 bg-gradient-to-br from-custom-green to-white relative" data-animate>
+      <section id="servicios" className="py-20 bg-gradient-to-br from-custom-green to-custom-green/50 relative" data-animate>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-16 transform transition-all duration-1000 ${
             isVisible.servicios ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
@@ -505,8 +505,8 @@ const CodeNovaLanding: React.FC = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-custom-green/30 hover:border-custom-teal/30 transform hover:-translate-y-2 ${
-                  isVisible.service ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                className={`group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-custom-lime/30 hover:border-custom-teal/30 transform hover:-translate-y-2 ${
+                  isVisible.servicios ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
@@ -546,10 +546,10 @@ const CodeNovaLanding: React.FC = () => {
           <div className={`text-center mb-16 transform transition-all duration-1000 ${
             isVisible.proceso ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-custom-green mb-4">
               Nuestro <span className="text-custom-lime">Proceso</span>
             </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl text-custom-green/90 max-w-2xl mx-auto">
               Un enfoque metodológico que garantiza resultados excepcionales
             </p>
           </div>
@@ -558,13 +558,13 @@ const CodeNovaLanding: React.FC = () => {
             {process.map((step, index) => (
               <div
                 key={index}
-                className={`text-center group transform transition-all duration-1000 ${
+                className={`text-center group relative transform transition-all duration-1000 ${
                   isVisible.proceso ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
                 <div className="relative mb-6">
-                  <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 border-2 border-custom-lime/30">
+                  <div className="w-20 h-20 bg-custom-green/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 border-2 border-custom-lime/30">
                     <div className="text-custom-lime">
                       {step.icon}
                     </div>
@@ -574,8 +574,8 @@ const CodeNovaLanding: React.FC = () => {
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-white/80 leading-relaxed">{step.description}</p>
+                <h3 className="text-xl font-bold text-custom-green mb-3">{step.title}</h3>
+                <p className="text-custom-green/80 leading-relaxed">{step.description}</p>
                 
                 {index < process.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-full w-8 h-0.5 bg-custom-lime/30 transform -translate-y-1/2"></div>
@@ -587,7 +587,11 @@ const CodeNovaLanding: React.FC = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-custom-green to-white relative" data-animate>
+      <section 
+        id="testimonials" 
+        className="py-20 bg-gradient-to-br from-custom-green to-custom-green/50 relative" 
+        data-animate
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-16 transform transition-all duration-1000 ${
             isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
@@ -604,14 +608,14 @@ const CodeNovaLanding: React.FC = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+                className={`bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-custom-lime/20 ${
                   isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="w-5 h-5 text-custom-lime fill-current" />
                   ))}
                 </div>
                 
@@ -645,38 +649,38 @@ const CodeNovaLanding: React.FC = () => {
           <div className={`text-center mb-12 transform transition-all duration-1000 ${
             isVisible.contacto ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-custom-green mb-4">
               ¡Conversemos!
             </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl text-custom-green/90 max-w-2xl mx-auto">
               ¿Listo para llevar tu proyecto al siguiente nivel? Completa el formulario y te responderemos en menos de 24 horas.
             </p>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+          <div className="bg-custom-green/10 backdrop-blur-sm rounded-3xl p-8 border border-custom-lime/20">
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-white font-medium mb-2">Nombre</label>
+                  <label className="block text-custom-green font-medium mb-2">Nombre</label>
                   <input 
                     type="text" 
-                    className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:border-custom-lime focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-lg bg-custom-green/20 text-custom-green placeholder-custom-green/70 border border-custom-lime/30 focus:border-custom-lime focus:outline-none transition-colors"
                     placeholder="Tu nombre completo"
                   />
                 </div>
                 <div>
-                  <label className="block text-white font-medium mb-2">Email</label>
+                  <label className="block text-custom-green font-medium mb-2">Email</label>
                   <input 
                     type="email" 
-                    className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:border-custom-lime focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-lg bg-custom-green/20 text-custom-green placeholder-custom-green/70 border border-custom-lime/30 focus:border-custom-lime focus:outline-none transition-colors"
                     placeholder="tu@email.com"
                   />
                 </div>
               </div>
               
               <div>
-                <label className="block text-white font-medium mb-2">Servicio de Interés</label>
-                <select className="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/30 focus:border-custom-lime focus:outline-none transition-colors">
+                <label className="block text-custom-green font-medium mb-2">Servicio de Interés</label>
+                <select className="w-full px-4 py-3 rounded-lg bg-custom-green/20 text-custom-green border border-custom-lime/30 focus:border-custom-lime focus:outline-none transition-colors">
                   <option value="">Selecciona un servicio</option>
                   <option value="desarrollo">Desarrollo Web</option>
                   <option value="optimizacion">Optimización</option>
@@ -685,10 +689,10 @@ const CodeNovaLanding: React.FC = () => {
               </div>
               
               <div>
-                <label className="block text-white font-medium mb-2">Mensaje</label>
+                <label className="block text-custom-green font-medium mb-2">Mensaje</label>
                 <textarea 
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:border-custom-lime focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-lg bg-custom-green/20 text-custom-green placeholder-custom-green/70 border border-custom-lime/30 focus:border-custom-lime focus:outline-none transition-colors resize-none"
                   placeholder="Cuéntanos sobre tu proyecto..."
                 ></textarea>
               </div>
@@ -701,21 +705,21 @@ const CodeNovaLanding: React.FC = () => {
               </button>
             </form>
             
-            <div className="grid md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/20">
+            <div className="grid md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-custom-lime/20">
               <div className="text-center">
                 <Mail className="w-8 h-8 text-custom-lime mx-auto mb-3" />
-                <div className="text-white font-medium">Email</div>
-                <div className="text-white/80">agustin.dardanelli@gmail.com</div>
+                <div className="text-custom-green font-medium">Email</div>
+                <div className="text-custom-green/80">agustin.dardanelli@gmail.com</div>
               </div>
               <div className="text-center">
                 <Phone className="w-8 h-8 text-custom-lime mx-auto mb-3" />
-                <div className="text-white font-medium">Teléfono</div>
-                <div className="text-white/80">+54 9 358 123-4567</div>
+                <div className="text-custom-green font-medium">Teléfono</div>
+                <div className="text-custom-green/80">+54 9 358 123-4567</div>
               </div>
               <div className="text-center">
                 <MapPin className="w-8 h-8 text-custom-lime mx-auto mb-3" />
-                <div className="text-white font-medium">Ubicación</div>
-                <div className="text-white/80">Río Cuarto, Córdoba</div>
+                <div className="text-custom-green font-medium">Ubicación</div>
+                <div className="text-custom-green/80">Río Cuarto, Córdoba</div>
               </div>
             </div>
           </div>
@@ -723,17 +727,17 @@ const CodeNovaLanding: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-custom-blue/95 backdrop-blur-sm border-t border-white/10">
+      <footer className="bg-custom-blue/95 backdrop-blur-sm border-t border-custom-lime/10">
         <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-custom-teal to-custom-lime rounded-xl flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-br from-custom-lime to-custom-teal rounded-xl flex items-center justify-center shadow-lg">
                   <span className="text-custom-blue font-bold text-lg">CN</span>
                 </div>
-                <span className="text-2xl font-bold text-white">CodeNova</span>
+                <span className="text-2xl font-bold text-custom-green">CodeNova</span>
               </div>
-              <p className="text-white/80 leading-relaxed mb-6 max-w-md">
+              <p className="text-custom-green/80 leading-relaxed mb-6 max-w-md">
                 Transformamos ideas en experiencias digitales excepcionales con tecnología de vanguardia y un enfoque centrado en resultados.
               </p>
               <div className="flex space-x-4">
@@ -741,13 +745,13 @@ const CodeNovaLanding: React.FC = () => {
                   href="https://github.com/Agustindardanelli-stack"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white/70 hover:text-custom-lime hover:bg-white/20 transition-all duration-300"
+                  className="w-10 h-10 bg-custom-green/10 rounded-lg flex items-center justify-center text-custom-green/70 hover:text-custom-lime hover:bg-custom-green/20 transition-all duration-300"
                 >
                   <Github className="w-5 h-5" />
                 </a>
                 <a
                   href="mailto:agustin.dardanelli@gmail.com"
-                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white/70 hover:text-custom-lime hover:bg-white/20 transition-all duration-300"
+                  className="w-10 h-10 bg-custom-green/10 rounded-lg flex items-center justify-center text-custom-green/70 hover:text-custom-lime hover:bg-custom-green/20 transition-all duration-300"
                 >
                   <Mail className="w-5 h-5" />
                 </a>
@@ -755,10 +759,10 @@ const CodeNovaLanding: React.FC = () => {
             </div>
             
             <div>
-              <h4 className="text-white font-semibold mb-4">Servicios</h4>
+              <h4 className="text-custom-green font-semibold mb-4">Servicios</h4>
               <div className="space-y-3">
                 {['Desarrollo Web', 'Optimización', 'Consultoría', 'Mantenimiento'].map((service) => (
-                  <div key={service} className="text-white/70 hover:text-custom-lime transition-colors cursor-pointer">
+                  <div key={service} className="text-custom-green/70 hover:text-custom-lime transition-colors cursor-pointer">
                     {service}
                   </div>
                 ))}
@@ -766,13 +770,13 @@ const CodeNovaLanding: React.FC = () => {
             </div>
             
             <div>
-              <h4 className="text-white font-semibold mb-4">Enlaces</h4>
+              <h4 className="text-custom-green font-semibold mb-4">Enlaces</h4>
               <div className="space-y-3">
                 {['Inicio', 'Proyectos', 'Servicios', 'Contacto'].map((link) => (
                   <a 
                     key={link}
                     href={`#${link.toLowerCase()}`}
-                    className="block text-white/70 hover:text-custom-lime transition-colors"
+                    className="block text-custom-green/70 hover:text-custom-lime transition-colors"
                   >
                     {link}
                   </a>
@@ -781,11 +785,11 @@ const CodeNovaLanding: React.FC = () => {
             </div>
           </div>
           
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between">
-            <div className="text-white/70 text-center md:text-left">
+          <div className="border-t border-custom-lime/10 pt-8 flex flex-col md:flex-row items-center justify-between">
+            <div className="text-custom-green/70 text-center md:text-left">
               © {new Date().getFullYear()} CodeNova. Todos los derechos reservados.
             </div>
-            <div className="text-white/70 text-center md:text-right mt-4 md:mt-0">
+            <div className="text-custom-green/70 text-center md:text-right mt-4 md:mt-0">
               Hecho con ❤️ en Río Cuarto, Córdoba
             </div>
           </div>
