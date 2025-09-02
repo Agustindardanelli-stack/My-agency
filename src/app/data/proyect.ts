@@ -18,30 +18,39 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 1,
-    title: "UARC System",
-    description: "Sistema integral de gestión universitaria con panel de administración, gestión de estudiantes y reportes en tiempo real.",
-    longDescription: "Sistema completo de gestión universitaria desarrollado para optimizar los procesos administrativos y académicos. Incluye módulos de inscripciones, seguimiento académico, gestión de docentes, generación de reportes automáticos y dashboard ejecutivo con métricas en tiempo real.",
-    image: "/images/projects/uarc-system.jpg",
-    tech: ["React", "Node.js", "MongoDB", "Express", "TypeScript", "JWT", "Socket.io", "Chart.js"],
-    github: "https://github.com/Agustindardanelli-stack/uarc-system",
-    demo: "https://uarc-system-demo.vercel.app",
-    category: "Web Application",
-    status: "Production",
-    features: [
-      "Dashboard administrativo completo",
-      "Gestión de estudiantes y docentes",
-      "Sistema de inscripciones online",
-      "Reportes automáticos en PDF",
-      "Notificaciones en tiempo real",
-      "Gestión de horarios y aulas",
-      "Sistema de calificaciones",
-      "Panel de métricas y analytics"
-    ],
-    year: 2024,
-    teamSize: 1,
-    duration: "4 meses"
-  },
+  id: 1,
+  title: "UARC-Tesoreria",
+  description: "Sistema de gestión contable y administrativa para una agrupación de árbitros, desarrollado en Python.",
+  longDescription: "Sistema de gestión contable y administrativa para una agrupación de árbitros que permite registrar ingresos, egresos, pagos de retenciones, y generar reportes, simulando el funcionamiento de un libro diario. Incluye control de acceso para diferentes perfiles y dashboard con resumen financiero.",
+  image: "/images/projects/uarc-tesoreria.jpg", // o tu imagen SVG
+  tech: ["Python 3", "PostgreSQL", "PyQt5", "FastAPI", "Render.com"],
+  github: "https://github.com/Agustindardanelli-stack/UARC-Tesoreria",
+  demo: "https://uarc-tesoreria-demo.render.com", // ajusta según tengas demo
+  category: "Desktop Application",
+  status: "Production",
+  features: [
+    "Gestión de ingresos y egresos",
+    "Registro de pagos y cobranzas por usuario", 
+    "Categorización de movimientos (retenciones, cobranzas, pagos, cuotas)",
+    "Dashboard con resumen financiero",
+    "Filtros por fecha y usuario",
+    "Control de acceso para diferentes perfiles (Tesorero, Admin)",
+    "Libro diario automático",
+    "Exportación de reportes",
+    "Cálculo automático de saldos"
+  ],
+  year: 2025,
+  teamSize: 1,
+  duration: "En desarrollo activo",
+  results: ['Sistema contable completo', 'Multi-rol de usuarios', 'Reportes automáticos'],
+  roles: [
+    "Admin/Tesorero: Acceso total al sistema",
+    "Árbitros: Consulta de movimientos y pagos", 
+    "Usuarios registrados: Solo para libro diario"
+  ],
+  architecture: "backend/ y frontend/ separados",
+  lastUpdate: "junio 2025"
+},
   {
     id: 2,
     title: "Journal App",
