@@ -1,11 +1,12 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, Code, Zap, Users, Menu, X, Star, ArrowRight, Mail, Phone, MapPin, Award, Rocket, Shield, Clock, CheckCircle, ArrowDown, Play } from 'lucide-react';
+import { Github, ExternalLink, Code, Zap, Users, Menu, X, Star, ArrowRight, Mail, Phone, MapPin, Award, Rocket, Shield, Clock, CheckCircle, ArrowDown, Play, Target, Lightbulb, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
 
-const CodeNovaLanding: React.FC = () => {
+const CodeNovaLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [isVisible, setIsVisible] = useState({});
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [activeProject, setActiveProject] = useState(0);
 
   useEffect(() => {
@@ -33,67 +34,119 @@ const CodeNovaLanding: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  const projects = [
+    {
+      id: 1,
+      title: "UARC-Tesoreria",
+      description: "Sistema de gestión contable y administrativa para una agrupación de árbitros, desarrollado en Python.",
+      longDescription: "Sistema de gestión contable y administrativa para una agrupación de árbitros que permite registrar ingresos, egresos, pagos de retenciones, y generar reportes, simulando el funcionamiento de un libro diario. Incluye control de acceso para diferentes perfiles y dashboard con resumen financiero.",
+      image: "https://via.placeholder.com/600x400/2F52E0/ffffff?text=UARC-Tesoreria",
+      tech: ["Python 3", "PostgreSQL", "PyQt5", "FastAPI", "Render.com"],
+      github: "https://github.com/Agustindardanelli-stack/UARC-Tesoreria",
+      demo: "https://uarc-tesoreria-demo.render.com",
+      category: "Desktop Application",
+      status: "Production",
+      features: [
+        "Gestión de ingresos y egresos",
+        "Registro de pagos y cobranzas por usuario", 
+        "Categorización de movimientos (retenciones, cobranzas, pagos, cuotas)",
+        "Dashboard con resumen financiero",
+        "Filtros por fecha y usuario",
+        "Control de acceso para diferentes perfiles (Tesorero, Admin)",
+        "Libro diario automático",
+        "Exportación de reportes",
+        "Cálculo automático de saldos"
+      ],
+      year: 2025,
+      teamSize: 1,
+      duration: "En desarrollo activo",
+      results: ['Sistema contable completo', 'Multi-rol de usuarios', 'Reportes automáticos'],
+      roles: [
+        "Admin/Tesorero: Acceso total al sistema",
+        "Árbitros: Consulta de movimientos y pagos", 
+        "Usuarios registrados: Solo para libro diario"
+      ],
+      architecture: "backend/ y frontend/ separados",
+      lastUpdate: "junio 2025"
+    },
+    {
+      id: 2,
+      title: "Journal App",
+      description: "Aplicación de journaling personal con autenticación, categorización de entradas y búsqueda avanzada.",
+      longDescription: "Aplicación web progresiva para llevar un diario personal digital. Permite a los usuarios escribir, organizar y buscar sus pensamientos y experiencias diarias. Incluye funciones de categorización automática, análisis de sentimientos, recordatorios y sincronización en la nube.",
+      image: "https://via.placeholder.com/600x400/2F52E0/ffffff?text=Journal+App",
+      tech: ["React", "Firebase", "Material-UI", "Redux", "TypeScript", "PWA", "Cloud Functions"],
+      github: "https://github.com/Agustindardanelli-stack/journal-app",
+      demo: "https://journal-app-personal.vercel.app",
+      category: "PWA",
+      status: "Beta",
+      features: [
+        "Editor de texto enriquecido",
+        "Categorización automática de entradas",
+        "Búsqueda avanzada con filtros",
+        "Análisis de estados de ánimo",
+        "Recordatorios personalizables",
+        "Sincronización multiplataforma",
+        "Modo offline completo",
+        "Exportación de datos en múltiples formatos"
+      ],
+      year: 2023,
+      teamSize: 1,
+      duration: "3 meses",
+      results: ['PWA completa', 'Offline-first', 'Análisis emocional']
+    },
+    {
+      id: 3,
+      title: "Heroes Database",
+      description: "Base de datos interactiva de superhéroes con búsqueda, filtros y comparación de estadísticas.",
+      longDescription: "Aplicación web que consume APIs públicas de superhéroes para crear una base de datos interactiva. Los usuarios pueden explorar personajes, comparar estadísticas, crear equipos personalizados y acceder a información detallada sobre sus héroes favoritos.",
+      image: "https://via.placeholder.com/600x400/2F52E0/ffffff?text=Heroes+DB",
+      tech: ["Vue.js", "TypeScript", "Tailwind CSS", "Pinia", "Vite", "API REST", "Chart.js"],
+      github: "https://github.com/Agustindardanelli-stack/heroes-db",
+      demo: "https://heroes-database-interactive.vercel.app",
+      category: "Web Application",
+      status: "Production",
+      features: [
+        "Búsqueda inteligente de personajes",
+        "Filtros avanzados por universo y poderes",
+        "Comparación visual de estadísticas",
+        "Creador de equipos personalizado",
+        "Perfiles detallados de personajes",
+        "Gráficos interactivos de poder",
+        "Sistema de favoritos",
+        "Modo batalla simulado"
+      ],
+      year: 2023,
+      teamSize: 1,
+      duration: "2 meses",
+      results: ['API Integration', 'Interactive Charts', 'Team Builder']
+    }
+  ];
+
   // Auto-rotate projects
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveProject(prev => (prev + 1) % projects.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [projects.length]);
 
   // Scroll suave para enlaces del navbar
-  useEffect(() => {
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-          setIsMenuOpen(false);
-        }
-      });
-    });
-  }, []);
-
-  const projects = [
-    {
-      id: 1,
-      title: 'UARC System',
-      description: 'Sistema integral de gestión universitaria con panel de administración, gestión de estudiantes y reportes en tiempo real.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Express'],
-      github: 'https://github.com/Agustindardanelli-stack/uarc-system',
-      demo: '#',
-      category: 'Web App',
-      status: 'Production',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI2dyYWRpZW50MCkiLz4KPHN2ZyB4PSIxNzUiIHk9IjEyNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjYmRlZDBiIiBvcGFjaXR5PSIwLjgiPgo8L3N2Zz4KPHN2ZyB4PSIxMDAiIHk9IjgwIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9IiNlY2VjZWMiIG9wYWNpdHk9IjAuNiI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcng9IjMiLz4KPC9zdmc+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MCIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBzdG9wLWNvbG9yPSIjMkY1MkUwIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAzMDQ1RSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=',
-      results: ['90% mejora en eficiencia', '500+ usuarios activos', '99.9% uptime'],
-    },
-    {
-      id: 2,
-      title: 'Journal App',
-      description: 'Aplicación de journaling personal con autenticación, categorización de entradas y búsqueda avanzada.',
-      tech: ['React', 'Firebase', 'Material-UI', 'Redux'],
-      github: 'https://github.com/Agustindardanelli-stack/journal-app',
-      demo: '#',
-      category: 'Mobile App',
-      status: 'Beta',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI2dyYWRpZW50MSkiLz4KPHN2ZyB4PSIxNzUiIHk9IjEyNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjYmRlZDBiIiBvcGFjaXR5PSIwLjgiPgo8L3N2Zz4KPHN2ZyB4PSIzMDAiIHk9IjUwIiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIGZpbGw9IiNlY2VjZWMiIG9wYWNpdHk9IjAuNSI+CjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjE1Ii8+Cjwvc3ZnPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDEiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzJGNTJFMCIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMzA0NUUiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K',
-      results: ['Interfaz intuitiva', 'Sync en tiempo real', 'Búsqueda avanzada'],
-    },
-    {
-      id: 3,
-      title: 'Heroes Database',
-      description: 'Base de datos interactiva de superhéroes con búsqueda, filtros y comparación de estadísticas.',
-      tech: ['Vue.js', 'TypeScript', 'Tailwind', 'API REST'],
-      github: 'https://github.com/Agustindardanelli-stack/heroes-db',
-      demo: '#',
-      category: 'Web App',
-      status: 'Production',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSJ1cmwoI2dyYWRpZW50MikiLz4KPHN2ZyB4PSIxNzUiIHk9IjEyNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjYmRlZDBiIiBvcGFjaXR5PSIwLjgiPgo8L3N2Zz4KPHN2ZyB4PSI2MCIgeT0iMjAwIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNlY2VjZWMiIG9wYWNpdHk9IjAuNCI+Cjxwb2x5Z29uIHBvaW50cz0iMjAsMCAzOSwyOSAyMCw0MCAyMCwzMCAwLDMwIDIwLDAiLz4KPC9zdmc+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MiIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBzdG9wLWNvbG9yPSIjMkY1MkUwIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAzMDQ1RSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=',
-      results: ['1000+ héroes', 'Filtros avanzados', 'Comparativa visual'],
-    },
-  ];
+  // useEffect(() => {
+  //   const links = document.querySelectorAll('a[href^="#"]');
+  //   links.forEach(link => {
+  //     const handleClick = (e) => {
+  //       e.preventDefault();
+  //       const target = document.querySelector(link.getAttribute('href'));
+  //       if (target) {
+  //         target.scrollIntoView({ behavior: 'smooth' });
+  //         setIsMenuOpen(false);
+  //       }
+  //     };
+  //     link.addEventListener('click', handleClick);
+  //     return () => link.removeEventListener('click', handleClick);
+  //   });
+  // }, []);
 
   const services = [
     {
@@ -143,7 +196,7 @@ const CodeNovaLanding: React.FC = () => {
     }
   ];
 
-  const process = [
+  const processSteps = [
     {
       step: '01',
       title: 'Análisis',
@@ -176,15 +229,22 @@ const CodeNovaLanding: React.FC = () => {
       <header
         className={`fixed w-full z-50 transition-all duration-500 ${
           scrollY > 50 
-            ? 'bg-white/95 backdrop-blur-md shadow-xl border-b border-custom-green/20' 
+            ? 'bg-white/95 backdrop-blur-md shadow-xl border-b border-custom-green' 
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-custom-teal to-custom-blue rounded-xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform">
-                <span className="text-white font-bold text-lg">CN</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-custom-teal to-custom-blue rounded-xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform p-1">
+                <Image
+                  src="/logo.png"
+                  alt="CodeNova Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain rounded-lg"
+                  priority
+                />
               </div>
               <span className="text-2xl font-bold text-custom-blue">
                 Code<span className="text-custom-teal">Nova</span>
@@ -192,12 +252,13 @@ const CodeNovaLanding: React.FC = () => {
             </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              {['Inicio', 'Proyectos', 'Servicios', 'Proceso', 'Contacto'].map((item, index) => (
+            <nav className="hidden md:flex space-x-8" role="navigation" aria-label="Navegación principal">
+              {['Inicio', 'Proyectos', 'Servicios', 'Nosotros', 'Proceso', 'Contacto'].map((item) => (
                 <a 
                   key={item}
                   href={`#${item.toLowerCase().replace('ó', 'o')}`} 
                   className="text-custom-blue hover:text-custom-teal transition-all duration-300 font-medium relative group"
+                  aria-label={`Ir a sección ${item}`}
                 >
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-custom-lime group-hover:w-full transition-all duration-300"></span>
@@ -207,8 +268,10 @@ const CodeNovaLanding: React.FC = () => {
             
             {/* Mobile menu button */}
             <button 
-              className="md:hidden p-2 rounded-lg hover:bg-custom-green/20 transition-colors" 
+              className="md:hidden p-2 rounded-lg hover:bg-custom-green transition-colors" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Abrir menú de navegación"
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? 
                 <X className="w-6 h-6 text-custom-blue" /> : 
@@ -220,18 +283,19 @@ const CodeNovaLanding: React.FC = () => {
         
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-custom-green/20 shadow-lg">
-            <div className="px-4 py-4 space-y-2">
+          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-custom-green shadow-lg">
+            <nav className="px-4 py-4 space-y-2" role="navigation" aria-label="Navegación móvil">
               {['Inicio', 'Proyectos', 'Servicios', 'Proceso', 'Contacto'].map((item) => (
                 <a 
                   key={item}
                   href={`#${item.toLowerCase().replace('ó', 'o')}`} 
-                  className="block py-3 px-4 text-custom-blue hover:text-custom-teal hover:bg-custom-green/10 rounded-lg transition-all duration-300 font-medium"
+                  className="block py-3 px-4 text-custom-blue hover:text-custom-teal hover:bg-custom-green rounded-lg transition-all duration-300 font-medium"
+                  aria-label={`Ir a sección ${item}`}
                 >
                   {item}
                 </a>
               ))}
-            </div>
+            </nav>
           </div>
         )}
       </header>
@@ -245,7 +309,7 @@ const CodeNovaLanding: React.FC = () => {
         {/* Background decorations */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-custom-lime/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-custom-lime/10 rounded-full blur-2xl animate-bounce"></div>
         </div>
         
@@ -273,6 +337,7 @@ const CodeNovaLanding: React.FC = () => {
               <a 
                 href="#proyectos"
                 className="group bg-gradient-to-r from-custom-teal to-custom-blue text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center"
+                aria-label="Ver nuestros proyectos destacados"
               >
                 Ver Proyectos
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -280,6 +345,7 @@ const CodeNovaLanding: React.FC = () => {
               <a 
                 href="#contacto"
                 className="border-2 border-custom-teal text-custom-teal px-8 py-4 rounded-xl font-semibold hover:bg-custom-teal hover:text-white transition-all duration-300 flex items-center"
+                aria-label="Contactar con un experto"
               >
                 <Play className="mr-2 w-5 h-5" />
                 Hablar con Experto
@@ -287,7 +353,7 @@ const CodeNovaLanding: React.FC = () => {
             </div>
             
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-custom-green/30">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-custom-green">
               <div className="text-center group">
                 <div className="text-2xl md:text-3xl font-bold text-custom-teal group-hover:scale-110 transition-transform">50+</div>
                 <div className="text-custom-blue/70 text-sm md:text-base">Proyectos</div>
@@ -348,7 +414,22 @@ const CodeNovaLanding: React.FC = () => {
                   </div>
                   
                   <h3 className="text-3xl font-bold text-white">{projects[activeProject].title}</h3>
-                  <p className="text-white/90 text-lg leading-relaxed">{projects[activeProject].description}</p>
+                  <p className="text-white/90 text-lg leading-relaxed">{projects[activeProject].longDescription || projects[activeProject].description}</p>
+                  
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div className="text-custom-lime font-bold">{projects[activeProject].year}</div>
+                      <div className="text-white/70 text-sm">Año</div>
+                    </div>
+                    <div>
+                      <div className="text-custom-lime font-bold">{projects[activeProject].duration}</div>
+                      <div className="text-white/70 text-sm">Duración</div>
+                    </div>
+                    <div>
+                      <div className="text-custom-lime font-bold">{projects[activeProject].teamSize} dev</div>
+                      <div className="text-white/70 text-sm">Equipo</div>
+                    </div>
+                  </div>
                   
                   <div className="flex flex-wrap gap-2">
                     {projects[activeProject].tech.map((tech, index) => (
@@ -373,6 +454,7 @@ const CodeNovaLanding: React.FC = () => {
                       className="flex items-center text-custom-lime hover:text-white transition-colors font-medium bg-white/10 px-4 py-2 rounded-lg"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Ver código fuente de ${projects[activeProject].title}`}
                     >
                       <Github className="w-5 h-5 mr-2" />
                       Código
@@ -380,6 +462,9 @@ const CodeNovaLanding: React.FC = () => {
                     <a
                       href={projects[activeProject].demo}
                       className="flex items-center text-custom-lime hover:text-white transition-colors font-medium bg-white/10 px-4 py-2 rounded-lg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Ver demo de ${projects[activeProject].title}`}
                     >
                       <ExternalLink className="w-5 h-5 mr-2" />
                       Demo
@@ -390,15 +475,16 @@ const CodeNovaLanding: React.FC = () => {
                 <div className="relative">
                   <img 
                     src={projects[activeProject].image} 
-                    alt={projects[activeProject].title}
+                    alt={`Captura de pantalla del proyecto ${projects[activeProject].title}`}
                     className="w-full rounded-2xl shadow-2xl"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
                 </div>
               </div>
               
               {/* Project navigation dots */}
-              <div className="flex justify-center mt-8 space-x-2">
+              <div className="flex justify-center mt-8 space-x-2" role="tablist" aria-label="Navegación de proyectos">
                 {projects.map((_, index) => (
                   <button
                     key={index}
@@ -406,6 +492,9 @@ const CodeNovaLanding: React.FC = () => {
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       index === activeProject ? 'bg-custom-lime' : 'bg-white/30'
                     }`}
+                    role="tab"
+                    aria-selected={index === activeProject}
+                    aria-label={`Ver proyecto ${index + 1}`}
                   />
                 ))}
               </div>
@@ -415,7 +504,7 @@ const CodeNovaLanding: React.FC = () => {
           {/* All Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <div
+              <article
                 key={project.id}
                 className={`group bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 ${
                   isVisible.proyectos ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
@@ -425,8 +514,9 @@ const CodeNovaLanding: React.FC = () => {
                 <div className="h-48 bg-gradient-to-br from-custom-teal to-custom-blue relative overflow-hidden">
                   <img 
                     src={project.image} 
-                    alt={project.title}
+                    alt={`Imagen del proyecto ${project.title}`}
                     className="w-full h-full object-cover opacity-80"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/20"></div>
                   <div className="relative z-10 p-6 h-full flex flex-col justify-between">
@@ -466,6 +556,7 @@ const CodeNovaLanding: React.FC = () => {
                       className="flex items-center text-custom-teal hover:text-custom-blue transition-colors font-medium"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Ver código fuente de ${project.title}`}
                     >
                       <Github className="w-5 h-5 mr-2" />
                       Código
@@ -475,20 +566,294 @@ const CodeNovaLanding: React.FC = () => {
                       className="flex items-center text-custom-teal hover:text-custom-blue transition-colors font-medium"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Ver demo de ${project.title}`}
                     >
                       <ExternalLink className="w-5 h-5 mr-2" />
                       Demo
                     </a>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
+      {/* About Us Section */}
+      <section className="py-20 bg-gradient-to-br from-custom-green to-white relative" id="nosotros" data-animate>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Header */}
+          <div className={`text-center mb-16 transform transition-all duration-1000 ${
+            isVisible.nosotros ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <div className="inline-flex items-center bg-custom-teal/10 text-custom-teal px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              <Users className="w-4 h-4 mr-2" />
+              Nuestro Equipo
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-custom-blue mb-6">
+              Conoce a <span className="text-custom-teal">CodeNova</span>
+            </h2>
+            <p className="text-xl text-custom-blue/80 max-w-3xl mx-auto leading-relaxed">
+              Somos un equipo apasionado por la tecnología y el marketing digital, 
+              comprometidos en transformar ideas en soluciones digitales que generen resultados reales y duraderos.
+            </p>
+          </div>
+
+          {/* Stats */}
+          <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 transform transition-all duration-1000 ${
+            isVisible.nosotros ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-custom-green/30 text-center group">
+              <div className="flex justify-center mb-3 text-custom-teal group-hover:scale-110 transition-transform">
+                <CheckCircle className="w-6 h-6" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-custom-blue mb-2">50+</div>
+              <div className="text-custom-blue/70 font-medium text-sm mb-1">Proyectos Completados</div>
+              <div className="text-custom-blue/50 text-xs">En diversos sectores</div>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-custom-green/30 text-center group">
+              <div className="flex justify-center mb-3 text-custom-teal group-hover:scale-110 transition-transform">
+                <Award className="w-6 h-6" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-custom-blue mb-2">100%</div>
+              <div className="text-custom-blue/70 font-medium text-sm mb-1">Clientes Satisfechos</div>
+              <div className="text-custom-blue/50 text-xs">Garantía de calidad</div>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-custom-green/30 text-center group">
+              <div className="flex justify-center mb-3 text-custom-teal group-hover:scale-110 transition-transform">
+                <Target className="w-6 h-6" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-custom-blue mb-2">3+</div>
+              <div className="text-custom-blue/70 font-medium text-sm mb-1">Años de Experiencia</div>
+              <div className="text-custom-blue/50 text-xs">Creciendo constantemente</div>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-custom-green/30 text-center group">
+              <div className="flex justify-center mb-3 text-custom-teal group-hover:scale-110 transition-transform">
+                <Zap className="w-6 h-6" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-custom-blue mb-2">24/7</div>
+              <div className="text-custom-blue/70 font-medium text-sm mb-1">Soporte Técnico</div>
+              <div className="text-custom-blue/50 text-xs">Siempre disponibles</div>
+            </div>
+          </div>
+
+          {/* Team Members */}
+          <div className={`grid md:grid-cols-2 gap-12 mb-20 transform transition-all duration-1000 ${
+            isVisible.nosotros ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <article className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-custom-green/30 overflow-hidden">
+              <div className="bg-gradient-to-br from-custom-teal to-custom-blue p-8 text-white relative">
+                <div className="absolute top-4 right-4 opacity-20">
+                  <Code className="w-16 h-16" />
+                </div>
+                <div className="flex items-start space-x-6">
+                  <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white/30 flex-shrink-0">
+                    <img 
+                      src="https://ui-avatars.com/api/?name=Agustin+Dardanelli&size=160&background=2F52E0&color=ffffff&font-size=0.5&rounded=true"
+                      alt="Foto de perfil de Agustín Dardanelli"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-2">Agustín Dardanelli</h3>
+                    <p className="text-custom-lime font-semibold mb-3">CEO & Full Stack Developer</p>
+                    <div className="flex flex-wrap gap-2">
+                      <div className="bg-white/20 px-3 py-1 rounded-full text-sm">3+ años</div>
+                      <div className="bg-white/20 px-3 py-1 rounded-full text-sm">50+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-8">
+                <p className="text-custom-blue/80 mb-6 leading-relaxed">
+                  Especialista en desarrollo web moderno con más de 3 años de experiencia creando soluciones digitales innovadoras que transforman negocios y generan resultados reales.
+                </p>
+
+                <div className="mb-6">
+                  <h4 className="font-semibold text-custom-blue mb-2">Formación:</h4>
+                  <p className="text-custom-blue/70 text-sm mb-3">Ing. en Sistemas de Información</p>
+                  <div className="flex flex-wrap gap-1">
+                    <span className="px-2 py-1 bg-custom-lime/20 text-custom-teal text-xs rounded-lg font-medium">React Developer</span>
+                    <span className="px-2 py-1 bg-custom-lime/20 text-custom-teal text-xs rounded-lg font-medium">AWS Cloud Practitioner</span>
+                    <span className="px-2 py-1 bg-custom-lime/20 text-custom-teal text-xs rounded-lg font-medium">Google Analytics</span>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-custom-blue mb-3">Especializaciones:</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {["React & Next.js", "Node.js & Express", "Database Design", "UI/UX Design"].map((skill, skillIndex) => (
+                        <div key={skillIndex} className="flex items-center">
+                          <div className="w-2 h-2 bg-custom-lime rounded-full mr-3"></div>
+                          <span className="text-custom-blue font-medium text-sm">{skill}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-custom-blue mb-3">Habilidades Clave:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {["Frontend", "Backend", "DevOps", "UI/UX"].map((skill, skillIndex) => (
+                        <span key={skillIndex} className="px-3 py-1 bg-custom-green text-custom-blue text-sm rounded-lg font-medium border border-custom-green/50">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-custom-green/30 overflow-hidden">
+              <div className="bg-gradient-to-br from-custom-teal to-custom-blue p-8 text-white relative">
+                <div className="absolute top-4 right-4 opacity-20">
+                  <Code className="w-16 h-16" />
+                </div>
+                <div className="flex items-start space-x-6">
+                  <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white/30 flex-shrink-0">
+                    <img 
+                      src="https://ui-avatars.com/api/?name=Marketing+Expert&size=160&background=2F52E0&color=ffffff&font-size=0.5&rounded=true"
+                      alt="Foto de perfil del Especialista en Marketing"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-2">Especialista Marketing</h3>
+                    <p className="text-custom-lime font-semibold mb-3">Marketing Digital & Design</p>
+                    <div className="flex flex-wrap gap-2">
+                      <div className="bg-white/20 px-3 py-1 rounded-full text-sm">2+ años</div>
+                      <div className="bg-white/20 px-3 py-1 rounded-full text-sm">40+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-8">
+                <p className="text-custom-blue/80 mb-6 leading-relaxed">
+                  Experta en estrategias de marketing digital y diseño, enfocada en crear marcas que conecten emocionalmente con su audiencia objetivo y generen conversiones.
+                </p>
+
+                <div className="mb-6">
+                  <h4 className="font-semibold text-custom-blue mb-2">Formación:</h4>
+                  <p className="text-custom-blue/70 text-sm mb-3">Lic. en Marketing Digital</p>
+                  <div className="flex flex-wrap gap-1">
+                    <span className="px-2 py-1 bg-custom-lime/20 text-custom-teal text-xs rounded-lg font-medium">Google Ads</span>
+                    <span className="px-2 py-1 bg-custom-lime/20 text-custom-teal text-xs rounded-lg font-medium">Facebook Blueprint</span>
+                    <span className="px-2 py-1 bg-custom-lime/20 text-custom-teal text-xs rounded-lg font-medium">HubSpot</span>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-custom-blue mb-3">Especializaciones:</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {["Marketing Digital", "SEO & SEM", "Redes Sociales", "Branding & Design"].map((skill, skillIndex) => (
+                        <div key={skillIndex} className="flex items-center">
+                          <div className="w-2 h-2 bg-custom-lime rounded-full mr-3"></div>
+                          <span className="text-custom-blue font-medium text-sm">{skill}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-custom-blue mb-3">Habilidades Clave:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {["SEO/SEM", "Social Media", "Analytics", "Design"].map((skill, skillIndex) => (
+                        <span key={skillIndex} className="px-3 py-1 bg-custom-green text-custom-blue text-sm rounded-lg font-medium border border-custom-green/50">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          {/* Values Section */}
+          <div className={`mb-20 transform transition-all duration-1000 ${
+            isVisible.nosotros ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-custom-blue mb-4">
+                Nuestros <span className="text-custom-teal">Valores</span>
+              </h3>
+              <p className="text-custom-blue/80 max-w-2xl mx-auto">
+                Los principios que guían nuestro trabajo y definen nuestra relación con cada cliente
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <article className="text-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-custom-green/30">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-custom-teal to-custom-blue text-white rounded-2xl mb-6">
+                  <Lightbulb className="w-8 h-8" />
+                </div>
+                <h4 className="text-xl font-bold text-custom-blue mb-4">Innovación</h4>
+                <p className="text-custom-blue/80 leading-relaxed mb-6">Utilizamos las últimas tecnologías para crear soluciones que marquen la diferencia en el mercado.</p>
+                
+                <div className="space-y-2">
+                  <h5 className="text-sm font-semibold text-custom-teal mb-3">Ejemplos:</h5>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {["React 18", "Next.js 13", "TypeScript", "AI Integration"].map((example, exampleIndex) => (
+                      <span key={exampleIndex} className="px-2 py-1 bg-custom-green text-custom-blue text-xs rounded-lg font-medium">
+                        {example}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+
+              <article className="text-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-custom-green/30">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-custom-teal to-custom-blue text-white rounded-2xl mb-6">
+                  <Users className="w-8 h-8" />
+                </div>
+                <h4 className="text-xl font-bold text-custom-blue mb-4">Colaboración</h4>
+                <p className="text-custom-blue/80 leading-relaxed mb-6">Trabajamos como socios estratégicos, no solo como proveedores de servicios técnicos.</p>
+                
+                <div className="space-y-2">
+                  <h5 className="text-sm font-semibold text-custom-teal mb-3">Ejemplos:</h5>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {["Metodología Ágil", "Comunicación Constante", "Feedback Continuo", "Trabajo en Equipo"].map((example, exampleIndex) => (
+                      <span key={exampleIndex} className="px-2 py-1 bg-custom-green text-custom-blue text-xs rounded-lg font-medium">
+                        {example}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+
+              <article className="text-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-custom-green/30">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-custom-teal to-custom-blue text-white rounded-2xl mb-6">
+                  <TrendingUp className="w-8 h-8" />
+                </div>
+                <h4 className="text-xl font-bold text-custom-blue mb-4">Resultados</h4>
+                <p className="text-custom-blue/80 leading-relaxed mb-6">Nos enfocamos en métricas reales que impacten positivamente en el crecimiento de tu negocio.</p>
+                
+                <div className="space-y-2">
+                  <h5 className="text-sm font-semibold text-custom-teal mb-3">Ejemplos:</h5>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {["ROI Medible", "Conversiones", "Performance", "Analytics"].map((example, exampleIndex) => (
+                      <span key={exampleIndex} className="px-2 py-1 bg-custom-green text-custom-blue text-xs rounded-lg font-medium">
+                        {example}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services */}
-      <section id="servicios" className="py-20 bg-gradient-to-br from-custom-green to-white relative" data-animate>
+      <section id="servicios" className="py-20 bg-gradient-to-br from-white to-custom-green relative" data-animate>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-16 transform transition-all duration-1000 ${
             isVisible.servicios ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
@@ -503,10 +868,10 @@ const CodeNovaLanding: React.FC = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div
+              <article
                 key={index}
-                className={`group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-custom-green/30 hover:border-custom-teal/30 transform hover:-translate-y-2 ${
-                  isVisible.service ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                className={`group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-custom-green hover:border-custom-teal transform hover:-translate-y-2 ${
+                  isVisible.servicios ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
@@ -533,7 +898,7 @@ const CodeNovaLanding: React.FC = () => {
                     Más Información
                   </button>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -555,10 +920,10 @@ const CodeNovaLanding: React.FC = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
+            {processSteps.map((step, index) => (
               <div
                 key={index}
-                className={`text-center group transform transition-all duration-1000 ${
+                className={`text-center group transform transition-all duration-1000 relative ${
                   isVisible.proceso ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
@@ -577,7 +942,7 @@ const CodeNovaLanding: React.FC = () => {
                 <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
                 <p className="text-white/80 leading-relaxed">{step.description}</p>
                 
-                {index < process.length - 1 && (
+                {index < processSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-full w-8 h-0.5 bg-custom-lime/30 transform -translate-y-1/2"></div>
                 )}
               </div>
@@ -587,10 +952,10 @@ const CodeNovaLanding: React.FC = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-custom-green to-white relative" data-animate>
+      <section id="testimonios" className="py-20 bg-gradient-to-br from-custom-green to-white relative" data-animate>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-16 transform transition-all duration-1000 ${
-            isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            isVisible.testimonios ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <h2 className="text-4xl lg:text-5xl font-bold text-custom-blue mb-4">
               Lo que dicen nuestros <span className="text-custom-teal">Clientes</span>
@@ -602,10 +967,10 @@ const CodeNovaLanding: React.FC = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div
+              <article
                 key={index}
                 className={`bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
-                  isVisible.testimonials ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  isVisible.testimonios ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
@@ -628,7 +993,7 @@ const CodeNovaLanding: React.FC = () => {
                     <div className="text-custom-blue/60 text-sm">{testimonial.role}</div>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -654,42 +1019,56 @@ const CodeNovaLanding: React.FC = () => {
           </div>
           
           <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-            <form className="space-y-6">
+            <form className="space-y-6" aria-label="Formulario de contacto">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-white font-medium mb-2">Nombre</label>
+                  <label className="block text-white font-medium mb-2" htmlFor="nombre">Nombre</label>
                   <input 
                     type="text" 
+                    id="nombre"
+                    name="nombre"
                     className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:border-custom-lime focus:outline-none transition-colors"
                     placeholder="Tu nombre completo"
+                    required
                   />
                 </div>
                 <div>
-                  <label className="block text-white font-medium mb-2">Email</label>
+                  <label className="block text-white font-medium mb-2" htmlFor="email">Email</label>
                   <input 
                     type="email" 
+                    id="email"
+                    name="email"
                     className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:border-custom-lime focus:outline-none transition-colors"
                     placeholder="tu@email.com"
+                    required
                   />
                 </div>
               </div>
               
               <div>
-                <label className="block text-white font-medium mb-2">Servicio de Interés</label>
-                <select className="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/30 focus:border-custom-lime focus:outline-none transition-colors">
-                  <option value="">Selecciona un servicio</option>
-                  <option value="desarrollo">Desarrollo Web</option>
-                  <option value="optimizacion">Optimización</option>
-                  <option value="consultoria">Consultoría</option>
+                <label className="block text-white font-medium mb-2" htmlFor="servicio">Servicio de Interés</label>
+                <select 
+                  id="servicio"
+                  name="servicio"
+                  className="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/30 focus:border-custom-lime focus:outline-none transition-colors"
+                  required
+                >
+                  <option value="" className="text-black">Selecciona un servicio</option>
+                  <option value="desarrollo" className="text-black">Desarrollo Web</option>
+                  <option value="optimizacion" className="text-black">Optimización</option>
+                  <option value="consultoria" className="text-black">Consultoría</option>
                 </select>
               </div>
               
               <div>
-                <label className="block text-white font-medium mb-2">Mensaje</label>
+                <label className="block text-white font-medium mb-2" htmlFor="mensaje">Mensaje</label>
                 <textarea 
                   rows={4}
+                  id="mensaje"
+                  name="mensaje"
                   className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/70 border border-white/30 focus:border-custom-lime focus:outline-none transition-colors resize-none"
                   placeholder="Cuéntanos sobre tu proyecto..."
+                  required
                 ></textarea>
               </div>
               
@@ -742,12 +1121,14 @@ const CodeNovaLanding: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white/70 hover:text-custom-lime hover:bg-white/20 transition-all duration-300"
+                  aria-label="Visitar nuestro GitHub"
                 >
                   <Github className="w-5 h-5" />
                 </a>
                 <a
                   href="mailto:agustin.dardanelli@gmail.com"
                   className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white/70 hover:text-custom-lime hover:bg-white/20 transition-all duration-300"
+                  aria-label="Enviar email"
                 >
                   <Mail className="w-5 h-5" />
                 </a>
